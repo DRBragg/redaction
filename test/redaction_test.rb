@@ -75,6 +75,12 @@ class RedactionTest < ActiveSupport::TestCase
   end
 
   test "it has a rake task" do
+    assert_includes Rake::Task.tasks.map(&:name), "redaction:redact"
+  end
+
+  test "it has a rake task to all redactable models" do
+    Rails.application.load_tasks
+
     comment = comments(:one)
     user = users(:one)
     post = posts(:one)
@@ -87,6 +93,8 @@ class RedactionTest < ActiveSupport::TestCase
   end
 
   test "it has a rake task that can target specific models" do
+    Rails.application.load_tasks
+
     comment = comments(:one)
     user = users(:one)
     post = posts(:one)
