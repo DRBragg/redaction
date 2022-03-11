@@ -46,5 +46,5 @@ jobs:
           DATABASE_URL: "sqlite3:redaction_test"
           RAILS_ENV: test
         run: |
-          bundle exec rails db:test:prepare
+          bundle exec rails db:prepare
           bundle exec bin/test
