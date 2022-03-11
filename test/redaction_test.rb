@@ -10,10 +10,10 @@ class RedactionTest < ActiveSupport::TestCase
     post = posts(:one)
     post.redact!
 
-    assert_match /<p>/, post.body
-    assert_match /<p>(<[^>]+>)?[A-Z]/, post.body
-    assert_match /<\/p>/, post.body
-    assert_match /\w{2,}/, post.body
+    assert_match(/<p>/, post.body)
+    assert_match(/<p>(<[^>]+>)?[A-Z]/, post.body)
+    assert_match(/<\/p>/, post.body)
+    assert_match(/\w{2,}/, post.body)
   end
 
   test "it generates redacted basic_html" do
@@ -28,26 +28,26 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     user.redact!
 
-    assert_match /example.(com|net|org)/, user.email
+    assert_match(/example.(com|net|org)/, user.email)
   end
 
   test "it generates redacted text" do
     comment = comments(:one)
     comment.redact!
 
-    assert_match /^[A-Z]/, comment.content
-    assert_match /\n/, comment.content
-    assert_match /\w{2,}/, comment.content
-    assert_match /\s/, comment.content
+    assert_match(/^[A-Z]/, comment.content)
+    assert_match(/\n/, comment.content)
+    assert_match(/\w{2,}/, comment.content)
+    assert_match(/\s/, comment.content)
   end
 
   test "it generates redacted string" do
     comment = comments(:one)
     comment.redact!
 
-    assert_match /\w{2,}/, comment.subject
-    assert_match /\s/, comment.subject
-    assert_no_match /\.$/, comment.subject
+    assert_match(/\w{2,}/, comment.subject)
+    assert_match(/\s/, comment.subject)
+    assert_no_match(/\.$/, comment.subject)
   end
 
   test "it redacts all redactable models" do

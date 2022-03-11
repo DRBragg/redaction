@@ -9,7 +9,7 @@ module Redaction
       private_constant :TAGS
 
       def redact
-        1.upto(rand(1..3)).map { content_tag(:p, generate_paragraph.html_safe) }.join("\n") # rubocop:disable Rails/OutputSafety
+        1.upto(rand(1..3)).map { content_tag(:p, generate_paragraph.html_safe) }.join("\n")
       end
 
       private
