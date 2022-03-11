@@ -87,6 +87,7 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     post = posts(:one)
 
+    ENV["MODELS"] = ""
     Rake::Task["redaction:redact"].invoke
 
     assert_not_equal comment.content, comment.reload.content
