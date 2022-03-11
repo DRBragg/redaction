@@ -75,6 +75,8 @@ class RedactionTest < ActiveSupport::TestCase
   end
 
   test "it has a rake task" do
+    Rails.application.load_tasks
+
     assert_includes Rake::Task.tasks.map(&:name), "redaction:redact"
   end
 
@@ -85,6 +87,7 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     post = posts(:one)
 
+    ENV["MODELS"] = ""
     Rake::Task["redaction:redact"].invoke
 
     assert_not_equal comment.content, comment.reload.content

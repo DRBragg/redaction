@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_09_194044) do
+ActiveRecord::Schema.define(version: 2022_03_09_194044) do
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
     t.text "content"
     t.string "subject"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -26,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_194044) do
     t.integer "user_id", null: false
     t.string "title"
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -35,8 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_09_194044) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   add_foreign_key "comments", "posts"

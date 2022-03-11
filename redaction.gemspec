@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ruby-progressbar"
 
   spec.add_development_dependency "standard"
+  spec.add_development_dependency "appraisal"
 end
