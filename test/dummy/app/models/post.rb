@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
 
   redacts :body, with: :html
   redacts :title, with: :basic_html

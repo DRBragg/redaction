@@ -75,6 +75,8 @@ class RedactionTest < ActiveSupport::TestCase
   end
 
   test "it has a rake task" do
+    Rails.application.load_tasks
+
     assert_includes Rake::Task.tasks.map(&:name), "redaction:redact"
   end
 
