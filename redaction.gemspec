@@ -21,4 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", ">= 5.1.0"
   spec.add_dependency "faker"
   spec.add_dependency "ruby-progressbar"
+
+  spec.add_development_dependency "standard"
 end
