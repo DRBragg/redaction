@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ['2.5', '2.6', 2.7', '3.0', '3.1']
+        ruby: ['2.5.9', '2.6.9', 2.7.7', '3.0.3', '3.1.1']
         gemfile:
           - rails_5_1
           - rails_5_2
@@ -21,20 +21,27 @@ jobs:
           - rails_7
           - rails_master
         exclude:
-          - ruby: '2.5'
+          - ruby: '2.5.9'
             gemfile:
               - rails_7
               - rails_master
-          - ruby: '2.6'
+          - ruby: '2.6.9'
             gemfile:
+              - rails_5_1
               - rails_7
               - rails_master
-          - ruby: '3.0'
+          - ruby: '2.7.7'
+            gemfile:
+              - rails_5_1
+              - rails_5_2
+              - rails_7
+              - rails_master
+          - ruby: '3.0.3'
             gemfile:
               - rails_5_1
               - rails_5_2
               - rails_6
-          - ruby: '3.1'
+          - ruby: '3.1.1'
             gemfile:
               - rails_5_1
               - rails_5_2
