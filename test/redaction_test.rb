@@ -50,6 +50,13 @@ class RedactionTest < ActiveSupport::TestCase
     assert_no_match(/\.$/, comment.subject)
   end
 
+  test "it generates redacted name" do
+    user = users(:one)
+    user.redact!
+
+    assert_not_equal user.first_name, "FirstName"
+  end
+
   test "it redacts all redactable models" do
     comment = comments(:one)
     user = users(:one)
