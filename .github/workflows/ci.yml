@@ -19,14 +19,13 @@ jobs:
           - rails_6_1
           - rails_7
         exclude:
-          - ruby: '2.6'
-            gemfile: 'rails_7'
-          - ruby: '2.7'
-            gemfile: 'rails_7'
-          - ruby: '3.0'
-            gemfile:
-              - 'rails_5_2'
-              - 'rails_6'
+          # - { ruby: '2.5', gemfile: 'rails_5_2' }
+          # - { ruby: '2.5', gemfile: 'rails_6_1' }
+          - { ruby: '2.6', gemfile: 'rails_7' }
+          - { ruby: '2.7', gemfile: 'rails_5_0' }
+          - { ruby: '2.7', gemfile: 'rails_5_1' }
+          - { ruby: '3.0', gemfile: 'rails_5_2' }
+          - { ruby: '3.0', gemfile: 'rails_6' }
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
       BUNDLE_PATH_RELATIVE_TO_CWD: true
