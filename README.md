@@ -27,8 +27,9 @@ end
 |:------------:|:------------:|
 | `:basic`     | A Sentence   |
 | `:basic_html`| An HTML snippit with `strong` and `em` tags wrapping some of the words  |
-| `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
 | `:email`     | A safe (will not send) email address |
+| `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
+| `:name`      | A person first/last name |
 | `:text`      | Multiple paragraphs |
 
 ### Preforming a Redaction
