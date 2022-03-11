@@ -19,10 +19,13 @@ jobs:
           - rails_6
           - rails_6_1
           - rails_7
+          - rails_master
         exclude:
           - { ruby: '2.5', gemfile: 'rails_7' }
+          - { ruby: '2.5', gemfile: 'rails_master' }
           - { ruby: '2.6', gemfile: 'rails_5_1' }
           - { ruby: '2.6', gemfile: 'rails_7' }
+          - { ruby: '2.6', gemfile: 'rails_master' }
           - { ruby: '2.7', gemfile: 'rails_5_1' }
           - { ruby: '2.7', gemfile: 'rails_5_2' }
           - { ruby: '3.0', gemfile: 'rails_5_1' }
