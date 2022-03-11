@@ -12,39 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ['2.5.9', '2.6.9', '2.7.5', '3.0.3', '3.1.1']
+        ruby: ['2.6.9', '2.7.5', '3.0.3']
         gemfile:
-          - rails_5_1
-          - rails_5_2
           - rails_6
           - rails_6_1
           - rails_7
-          - rails_master
         exclude:
-          - ruby: '2.5.9'
-            gemfile:
-              - rails_7
-              - rails_master
           - ruby: '2.6.9'
-            gemfile:
-              - rails_5_1
-              - rails_7
-              - rails_master
+            gemfile: 'rails_7'
           - ruby: '2.7.5'
-            gemfile:
-              - rails_5_1
-              - rails_5_2
-              - rails_7
-              - rails_master
+            gemfile: 'rails_7'
           - ruby: '3.0.3'
-            gemfile:
-              - rails_5_1
-              - rails_5_2
-              - rails_6
-          - ruby: '3.1.1'
-            gemfile:
-              - rails_5_1
-              - rails_5_2
+            gemfile: 'rails_6'
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
       BUNDLE_PATH_RELATIVE_TO_CWD: true
