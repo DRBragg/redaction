@@ -1,6 +1,8 @@
 # Redaction
 Easily redact your ActiveRecord Models. Great for use when you use production data in staging or dev. Simply set the redaction type of the attributes you want to redact and run via the [console](#via-the-rails-console) or the included [rake task](#via-rake-task).
 
+`redaction` uses [Faker](https://github.com/faker-ruby/faker) under the hood to generate redacted data.
+
 ## Installation
 **NOTE:** This is currently an unreleased library very much in beta. Use at your own risk.
 
@@ -68,3 +70,6 @@ Bug reports and pull requests are welcome on GitHub at [drbragg/redaction](https
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Acknowledgments
+`redaction` leans heavily on the awesome [Faker gem](https://github.com/faker-ruby/faker).  If not for their hard work this would be a much different and probably more complex project.  If you like `redaction` please consider sending them a thank you or contributing to the gem.
