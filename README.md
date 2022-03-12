@@ -36,7 +36,7 @@ end
 | Type         | Generates    |
 |:------------:|:------------:|
 | `:basic`     | A Sentence   |
-| `:basic_html`| An HTML snippit with `strong` and `em` tags wrapping some of the words  |
+| `:basic_html`| An HTML snippet with `strong` and `em` tags wrapping some of the words  |
 | `:email`     | A safe (will not send) email address |
 | `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
 | `:name`      | A person first/last name |
@@ -64,6 +64,25 @@ This will target **all** the models with redacted attributes. To target specific
 Redaction::Redactor.new(models: ["User", "Post"]).redact
 ```
 This will only redact the `User` and `Post` Models
+
+#### Validations and Callbacks
+By default, preforming a redaction does not trigger validations or update the `updated_at` attribute.
+
+Callbacks can be skipped with the `:redacting?` method. i.e.:
+```ruby
+class User < ApplicationRecord
+  after_save :do_something, unless: :redacting?
+
+  redacts :first_name, :last_name, with: :name
+end
+```
+
+## Roadmap
+- [ ] Raise Error or at least a message when skipping a passed in Model
+- [ ] Configuration (touch, email domains, etc)
+- [ ] Better Documentation
+- [ ] More types
+- [ ] Release v1.0 as a real gem
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at [drbragg/redaction](https://github.com/drbragg/redaction). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/DRBragg/redaction/blob/main/CODE_OF_CONDUCT.md).
