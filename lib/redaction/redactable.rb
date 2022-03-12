@@ -6,19 +6,17 @@ module Redaction
       class_attribute :redacted_attributes, instance_writer: false
 
       def redact!
-        columns = {}
-
         redacted_attributes.each_pair do |redactor_type, attributes|
           redactor = Redaction.find(redactor_type)
 
           attributes.each do |attribute|
             if send(attribute).present?
-              columns[attribute.to_sym] = redactor.redact
+              send("#{attribute}=", redactor.redact)
             end
           end
         end
 
-        update_columns(columns) unless columns.empty?
+        save(validate: false)
       end
     end
 
