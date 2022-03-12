@@ -5,7 +5,12 @@ module Redaction
     included do
       class_attribute :redacted_attributes, instance_writer: false
 
+      after_commit do
+        @_redacting = false
+      end
+
       def redact!
+        @_redacting = true
         redacted_attributes.each_pair do |redactor_type, attributes|
           redactor = Redaction.find(redactor_type)
 
@@ -16,7 +21,11 @@ module Redaction
           end
         end
 
-        save(validate: false)
+        save(validate: false, touch: false, context: :redaction)
+      end
+
+      def redacting?
+        !!@_redacting
       end
     end
 
