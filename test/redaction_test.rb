@@ -6,6 +6,15 @@ class RedactionTest < ActiveSupport::TestCase
     assert Redaction::VERSION
   end
 
+  test "it only redacts specified attributes" do
+    user = users(:one)
+    user.redact!
+
+    assert_not_equal user.first_name, "FirstName"
+    assert_not_equal user.email, "one@example.com"
+    assert_equal user.last_name, "LastName"
+  end
+
   test "it generates redacted html" do
     post = posts(:one)
     post.redact!
@@ -55,6 +64,7 @@ class RedactionTest < ActiveSupport::TestCase
     user.redact!
 
     assert_not_equal user.first_name, "FirstName"
+    assert user.first_name.scan(/\w+/).length == 1
   end
 
   test "it redacts all redactable models" do
