@@ -67,6 +67,34 @@ class RedactionTest < ActiveSupport::TestCase
     assert user.first_name.scan(/\w+/).length == 1
   end
 
+  test "it skips validation" do
+    comment = comments(:one)
+
+    assert comment.subject.length < 10
+
+    comment.redact!
+
+    assert comment.subject.length > 10
+    assert comment.persisted?
+  end
+
+  test "it allow callbacks to be skipped" do
+    comment = comments(:one)
+
+    assert_not_includes comment.subject, "Updated in Callback"
+    assert_not_includes comment.content, "Updated in Callback"
+
+    comment.save
+
+    assert_includes comment.reload.subject, "Updated in Callback"
+    assert_includes comment.reload.content, "Updated in Callback"
+
+    comment.redact!
+
+    assert_not_includes comment.reload.subject, "Updated in Callback"
+    assert_includes comment.reload.content, "Updated in Callback"
+  end
+
   test "it redacts all redactable models" do
     comment = comments(:one)
     user = users(:one)
