@@ -51,7 +51,7 @@ This will target **all** the models with redacted attributes. To target specific
 ```bash
 rails redaction:redact MODELS=User,Post
 ```
-This will only redcat the `User` and `Post` Models
+This will only redact the `User` and `Post` Models
 
 #### Via the Rails Console
 ```ruby
@@ -61,7 +61,7 @@ This will target **all** the models with redacted attributes. To target specific
 ```ruby
 Redaction::Redactor.new(models: ["User", "Post"]).redact
 ```
-This will only redcat the `User` and `Post` Models
+This will only redact the `User` and `Post` Models
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at [drbragg/redaction](https://github.com/drbragg/redaction). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/DRBragg/redaction/blob/main/CODE_OF_CONDUCT.md).
