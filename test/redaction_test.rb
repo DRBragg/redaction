@@ -154,4 +154,20 @@ class RedactionTest < ActiveSupport::TestCase
     assert_not_equal user.email, user.reload.email
     assert_equal post.body, post.reload.body
   end
+
+  test "it works with attr_encrypted" do
+    user = users(:one)
+    user.update(ssn: "111-11-1111")
+    user.redact!
+
+    assert_not_equal user.ssn, "111-11-1111"
+  end
+
+  test "it works with lockbox" do
+    user = users(:one)
+    user.update(phone: "(111) 111-1111")
+    user.redact!
+
+    assert_not_equal user.phone, "(111) 111-1111"
+  end
 end
