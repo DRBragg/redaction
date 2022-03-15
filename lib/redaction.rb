@@ -3,6 +3,7 @@ require "redaction/railtie"
 
 module Redaction
   module Types
+    autoload :Base, "redaction/types/base"
     autoload :Basic, "redaction/types/basic"
     autoload :BasicHtml, "redaction/types/basic_html"
     autoload :Email, "redaction/types/email"
