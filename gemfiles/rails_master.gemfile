@@ -4,5 +4,7 @@ source "https://rubygems.org"
 
 gem "sqlite3"
 gem "rails", branch: "main", git: "https://github.com/rails/rails.git"
+gem "attr_encrypted", github: "PagerTree/attr_encrypted", branch: "rails-7-0-support"
+gem "lockbox"
 
 gemspec path: "../"

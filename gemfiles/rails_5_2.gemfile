@@ -4,5 +4,7 @@ source "https://rubygems.org"
 
 gem "sqlite3"
 gem "rails", "~> 5.2.0"
+gem "attr_encrypted"
+gem "lockbox"
 
 gemspec path: "../"
