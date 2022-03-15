@@ -5,7 +5,7 @@ class User < ApplicationRecord
   redacts :first_name, with: :name
   redacts :middle_name, with: ->(record) { "#{record.model_name.human} #{record.id}" }
   redacts :suffix, with: :missing
-  redacts :username, with: Custom
+  redacts :username, with: CustomRedactor
   redacts :email, with: :email
   redacts :ssn, :phone
 end
