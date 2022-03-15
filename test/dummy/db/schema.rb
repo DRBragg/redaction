@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 2022_03_09_194044) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+    t.string "encrypted_ssn"
+    t.string "encrypted_ssn_iv"
+    t.string "phone_ciphertext"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
