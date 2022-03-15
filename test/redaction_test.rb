@@ -6,6 +6,30 @@ class RedactionTest < ActiveSupport::TestCase
     assert Redaction::VERSION
   end
 
+  test "it accepts a proc as a redactor" do
+    user = users(:one)
+    user.redact!
+
+    assert_not_equal user.middle_name, "MiddleName"
+    assert_equal user.middle_name, "User #{user.id}"
+  end
+
+  test "it accepts a Class as a redactor" do
+    user = users(:one)
+    user.redact!
+
+    assert_not_equal user.username, "user-name1"
+    assert_equal user.username, "I'm a custom redactor"
+  end
+
+  test "it defaults to '[REDACTED]' when redactor type can't be found" do
+    user = users(:one)
+    user.redact!
+
+    assert_not_equal user.suffix, "Sr."
+    assert_equal user.suffix, "[REDACTED]"
+  end
+
   test "it only redacts specified attributes" do
     user = users(:one)
     user.redact!

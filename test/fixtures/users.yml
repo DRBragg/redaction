@@ -2,10 +2,16 @@
 
 one:
   first_name: FirstName
+  middle_name: MiddleName
   last_name: LastName
+  suffix: Sr.
+  username: user-name1
   email: one@example.com
 
 two:
   first_name: FirstName
+  middle_name: MiddleName
   last_name: LastName
+  suffix: Jr.
+  username: user-name2
   email: two@example.com
