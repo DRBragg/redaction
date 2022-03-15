@@ -2,8 +2,8 @@ require "faker"
 
 module Redaction
   module Types
-    class Email
-      def redact
+    class Email < Base
+      def self.content
         Faker::Internet.safe_email
       end
     end

@@ -2,13 +2,17 @@ require "faker"
 
 module Redaction
   module Types
-    class Html
+    class Html < Base
       include ActionView::Helpers::TagHelper
 
       TAGS = %i[em strong a]
       private_constant :TAGS
 
-      def redact
+      def self.content
+        new.content
+      end
+
+      def content
         1.upto(rand(1..3)).map { content_tag(:p, generate_paragraph.html_safe) }.join("\n")
       end
 
