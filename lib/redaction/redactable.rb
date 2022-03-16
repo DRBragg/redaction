@@ -16,12 +16,12 @@ module Redaction
 
           attributes.each do |attribute|
             if send(attribute).present?
-              send("#{attribute}=", redactor.call(self))
+              send("#{attribute}=", redactor.call(self, { attribute: attribute }))
             end
           end
         end
 
-        save(validate: false, touch: false, context: :redaction)
+        save!(validate: false, touch: false, context: :redaction)
       end
 
       def redacting?
