@@ -32,6 +32,8 @@ class User < ApplicationRecord
 end
 ```
 ### Redactor Types
+
+#### Built in
 `redaction` comes with a few different redactor types:
 | Type         | Generates    |
 |:------------:|:------------:|
@@ -41,6 +43,33 @@ end
 | `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
 | `:name`      | A person first/last name |
 | `:text`      | Multiple paragraphs |
+
+#### Using a Proc
+A Proc `:with` value is given two arguments: the record being redacted, and a hash with the :attribute key-value pair.
+```ruby
+class Model < ApplicationRecord
+  redacts :attribute, with: -> (record, data) { record.id }
+end
+```
+would cause `Model#attribute` to be set to `Model#id` after redaction
+#### Using a custom class
+Add a folder in `app/`, `redactors/` is suggested, and put custom redactors in there. A custom redactor should inherit from `Redaction::Types::Base` and should define a `content` method. Like so:
+```ruby
+# app/redactors/custom_redactor.rb
+class CustomRedactor < Redaction::Types::Base
+  def content
+    "Some Custom Value"
+  end
+end
+```
+and then to use it:
+```ruby
+class Model < ApplicationRecord
+  redacts :attribute, with: CustomRedactor
+end
+```
+would cause `Model#attribute` to be set to "Some Custom Value" after redaction.
+Custom redactor types also get access to the record being redacted via `record`, and a hash with the `:attribute` key-value pair via `data`
 
 ### Preforming a Redaction
 There are two ways to preform the redaction.
