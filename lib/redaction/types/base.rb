@@ -1,11 +1,18 @@
 module Redaction
   module Types
     class Base
-      def self.call(*args)
-        content
+      attr_reader :record, :data
+
+      def self.call(record, data)
+        new(record, data).content
       end
 
-      def self.content
+      def initialize(record, data)
+        @record = record
+        @data = data
+      end
+
+      def content
         "[REDACTED]"
       end
     end
