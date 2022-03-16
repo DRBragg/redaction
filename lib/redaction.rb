@@ -3,6 +3,7 @@ require "redaction/railtie"
 
 module Redaction
   module Types
+    autoload :Base, "redaction/types/base"
     autoload :Basic, "redaction/types/basic"
     autoload :BasicHtml, "redaction/types/basic_html"
     autoload :Email, "redaction/types/email"
@@ -15,7 +16,11 @@ module Redaction
   autoload :Redactor, "redaction/redactor"
 
   def self.find(redactor_type)
-    "Redaction::Types::#{redactor_type.to_s.camelize}".constantize.new
+    if redactor_type.respond_to?(:call)
+      redactor_type
+    else
+      "Redaction::Types::#{redactor_type.to_s.camelize}".safe_constantize || Redaction::Types::Base
+    end
   end
 
   def self.redactable_models

@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 2022_03_09_194044) do
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
+    t.string "middle_name"
     t.string "last_name"
+    t.string "suffix"
+    t.string "username"
     t.string "email"
     t.string "encrypted_ssn"
     t.string "encrypted_ssn_iv"
