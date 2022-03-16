@@ -1,4 +1,6 @@
 # Redaction
+[![Tests](https://github.com/DRBragg/redaction/actions/workflows/ci.yml/badge.svg)](https://github.com/DRBragg/redaction/actions/workflows/ci.yml)
+
 Easily redact your ActiveRecord Models. Great for use when you use production data in staging or dev. Simply set the redaction type of the attributes you want to redact and run via the [console](#via-the-rails-console) or the included [rake task](#via-rake-task).
 
 `redaction` uses [Faker](https://github.com/faker-ruby/faker) under the hood to generate redacted data.
