@@ -3,7 +3,7 @@ class User < ApplicationRecord
   lockbox_encrypts :phone
 
   redacts :first_name, with: :name
-  redacts :middle_name, with: ->(record) { "#{record.model_name.human} #{record.id}" }
+  redacts :middle_name, with: ->(record, data) { "#{record.model_name.human} #{record.id}" }
   redacts :suffix, with: :missing
   redacts :username, with: CustomRedactor
   redacts :email, with: :email
