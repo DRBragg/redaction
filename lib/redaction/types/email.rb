@@ -3,7 +3,7 @@ require "faker"
 module Redaction
   module Types
     class Email < Base
-      def self.content
+      def content
         Faker::Internet.safe_email
       end
     end

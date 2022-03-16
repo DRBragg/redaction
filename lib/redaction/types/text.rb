@@ -3,7 +3,7 @@ require "faker"
 module Redaction
   module Types
     class Text < Base
-      def self.content
+      def content
         paragraphs = 1.upto(rand(1..3)).map do
           Faker::Lorem.paragraph(sentence_count: rand(1..5))
         end

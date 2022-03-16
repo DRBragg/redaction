@@ -3,7 +3,7 @@ require "faker"
 module Redaction
   module Types
     class Name < Base
-      def self.content
+      def content
         Faker::Name.first_name
       end
     end

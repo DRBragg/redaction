@@ -3,7 +3,7 @@ require "faker"
 module Redaction
   module Types
     class Basic < Base
-      def self.content
+      def content
         Faker::Lorem.sentence(word_count: rand(3..10)).gsub(/\.$/, "")
       end
     end
