@@ -10,6 +10,6 @@ namespace :redaction do
     model_names = (ENV["MODELS"] || "").split(",").map(&:strip)
     puts model_names.empty? ? "Redacting all models" : "Redacting models: #{model_names.join(", ")}"
 
-    Redaction::Redactor.new(models: model_names).redact
+    Redaction.redact!(models: model_names)
   end
 end
