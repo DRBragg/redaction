@@ -9,6 +9,7 @@ module Redaction
     autoload :Email, "redaction/types/email"
     autoload :Html, "redaction/types/html"
     autoload :Name, "redaction/types/name"
+    autoload :Phone, "redaction/types/phone"
     autoload :Text, "redaction/types/text"
   end
 

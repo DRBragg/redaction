@@ -46,6 +46,7 @@ end
 | `:email`     | A safe (will not send) email address |
 | `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
 | `:name`      | A person first/last name |
+| `:phone`     | A phone number |
 | `:text`      | Multiple paragraphs |
 
 To use a built in redactor type set the `with:` option of a `redacts` call to the appropriate symbol.
