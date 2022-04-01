@@ -26,4 +26,8 @@ module Redaction
   def self.redactable_models
     ApplicationRecord.subclasses.select { |descendant| descendant.has_redacted_content? }
   end
+
+  def self.redact!(models: nil)
+    Redactor.new(models: models).redact!
+  end
 end

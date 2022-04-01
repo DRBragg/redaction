@@ -124,7 +124,7 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     post = posts(:one)
 
-    Redaction::Redactor.new.redact
+    Redaction.redact!
 
     assert_not_equal comment.content, comment.reload.content
     assert_not_equal user.email, user.reload.email
@@ -136,7 +136,7 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     post = posts(:one)
 
-    Redaction::Redactor.new(models: ["Comment", "User"]).redact
+    Redaction.redact!(models: ["Comment", "User"])
 
     assert_not_equal comment.content, comment.reload.content
     assert_not_equal user.email, user.reload.email

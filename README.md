@@ -92,11 +92,11 @@ This will only redact the `User` and `Post` Models
 
 #### Via the Rails Console
 ```ruby
-Redaction::Redactor.new.redact
+Redaction.redact!
 ```
 This will target **all** the models with redacted attributes. To target specific models run:
 ```ruby
-Redaction::Redactor.new(models: ["User", "Post"]).redact
+Redaction.redact!(models: ["User", "Post"])
 ```
 This will only redact the `User` and `Post` Models
 

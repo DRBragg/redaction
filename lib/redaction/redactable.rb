@@ -16,7 +16,7 @@ module Redaction
 
           attributes.each do |attribute|
             if send(attribute).present?
-              send("#{attribute}=", redactor.call(self, { attribute: attribute }))
+              send("#{attribute}=", redactor.call(self, {attribute: attribute}))
             end
           end
         end
