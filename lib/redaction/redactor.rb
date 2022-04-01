@@ -8,7 +8,7 @@ module Redaction
       @models_to_redact = set_models(models)
     end
 
-    def redact
+    def redact!
       models_to_redact.each do |model|
         next if model.redacted_attributes.empty?
 
