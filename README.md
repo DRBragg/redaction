@@ -27,6 +27,8 @@ class Model < ApplicationRecord
   redacts :<attribute>, with: :<redactor_type>
 end
 ```
+`<redactor_type>` can be a symbol, proc, or custom class. See [Redactor Types](#redactor-types) for more information.
+
 `redacts` accepts multiple attributes, provided they all use the same redactor type. i.e.:
 ```ruby
 class User < ApplicationRecord
@@ -45,6 +47,8 @@ end
 | `:html`      | Multiple HTML Paragraphs with a random amount of link tags, `strong` tags, and `em` tags  |
 | `:name`      | A person first/last name |
 | `:text`      | Multiple paragraphs |
+
+To use a built in redactor type set the `with:` option of a `redacts` call to the appropriate symbol.
 
 #### Using a Proc
 A Proc `:with` value is given two arguments: the record being redacted, and a hash with the :attribute key-value pair.
