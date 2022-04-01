@@ -194,4 +194,12 @@ class RedactionTest < ActiveSupport::TestCase
 
     assert_not_equal user.phone, "(111) 111-1111"
   end
+
+  test "it generates a redacted phone number" do
+    account = accounts(:one)
+    account.redact!
+
+    assert_not_equal "(111) 111-1111", account.phone_number
+    assert_match(/\d?.?\(?\d{3}\)?\s?.?\d{3}.?\d{4}/, account.phone_number)
+  end
 end
