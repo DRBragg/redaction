@@ -10,33 +10,33 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     user.redact!
 
-    assert_not_equal user.middle_name, "MiddleName"
-    assert_equal user.middle_name, "User #{user.id}"
+    assert_not_equal "MiddleName", user.middle_name
+    assert_equal "User #{user.id}", user.middle_name
   end
 
   test "it accepts a Class as a redactor" do
     user = users(:one)
     user.redact!
 
-    assert_not_equal user.username, "user-name1"
-    assert_equal user.username, "I'm a custom redactor"
+    assert_not_equal "user-name1", user.username
+    assert_equal "I'm a custom redactor", user.username
   end
 
   test "it defaults to '[REDACTED]' when redactor type can't be found" do
     user = users(:one)
     user.redact!
 
-    assert_not_equal user.suffix, "Sr."
-    assert_equal user.suffix, "[REDACTED]"
+    assert_not_equal "Sr.", user.suffix
+    assert_equal "[REDACTED]", user.suffix
   end
 
   test "it only redacts specified attributes" do
     user = users(:one)
     user.redact!
 
-    assert_not_equal user.first_name, "FirstName"
-    assert_not_equal user.email, "one@example.com"
-    assert_equal user.last_name, "LastName"
+    assert_not_equal "FirstName", user.first_name
+    assert_not_equal "one@example.com", user.email
+    assert_equal "LastName", user.last_name
   end
 
   test "it generates redacted html" do
@@ -87,7 +87,7 @@ class RedactionTest < ActiveSupport::TestCase
     user = users(:one)
     user.redact!
 
-    assert_not_equal user.first_name, "FirstName"
+    assert_not_equal "FirstName", user.first_name
     assert user.first_name.scan(/\w+/).length == 1
   end
 
@@ -184,7 +184,7 @@ class RedactionTest < ActiveSupport::TestCase
     user.update(ssn: "111-11-1111")
     user.redact!
 
-    assert_not_equal user.ssn, "111-11-1111"
+    assert_not_equal "111-11-1111", user.ssn
   end
 
   test "it works with lockbox" do
@@ -192,7 +192,7 @@ class RedactionTest < ActiveSupport::TestCase
     user.update(phone: "(111) 111-1111")
     user.redact!
 
-    assert_not_equal user.phone, "(111) 111-1111"
+    assert_not_equal "(111) 111-1111", user.phone
   end
 
   test "it generates a redacted phone number" do
