@@ -202,4 +202,44 @@ class RedactionTest < ActiveSupport::TestCase
     assert_not_equal "(111) 111-1111", account.phone_number
     assert_match(/\d?.?\(?\d{3}\)?\s?.?\d{3}.?\d{4}/, account.phone_number)
   end
+
+  test "it raises an error if redaction is attempted in production" do
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(Redaction::ProductionEnvironmentError) do
+        Redaction.redact!
+      end
+    end
+  end
+
+  test "it raises an error if redaction is attempted on a model in production" do
+    post = posts(:one)
+
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(Redaction::ProductionEnvironmentError) do
+        post.redact!
+      end
+
+      assert_equal post.body, post.reload.body
+    end
+  end
+
+  test "it aborts the rake task if it is attempted in production" do
+    Rails.application.load_tasks
+
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(SystemExit) do
+        Rake::Task["redaction:redact"].execute
+      end
+    end
+  end
+
+  test "it doesn't redact data if in production" do
+    Rails.stub(:env, "production".inquiry) do
+      post = posts(:one)
+
+      Redaction.redact! rescue
+
+      assert_equal post.body, post.reload.body
+    end
+  end
 end
