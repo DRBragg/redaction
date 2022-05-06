@@ -10,6 +10,8 @@ module Redaction
       end
 
       def redact!
+        raise ProductionEnvironmentError if Rails.env.production?
+
         @_redacting = true
         redacted_attributes.each_pair do |redactor_type, attributes|
           redactor = Redaction.find(redactor_type)

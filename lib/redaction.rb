@@ -16,6 +16,14 @@ module Redaction
   autoload :Redactable, "redaction/redactable"
   autoload :Redactor, "redaction/redactor"
 
+  class ProductionEnvironmentError < StandardError
+    DEFAULT_MESSAGE = "Data cannot be redacted in production!"
+
+    def initialize(message = DEFAULT_MESSAGE)
+      super
+    end
+  end
+
   def self.find(redactor_type)
     if redactor_type.respond_to?(:call)
       redactor_type

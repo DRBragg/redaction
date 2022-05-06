@@ -9,6 +9,8 @@ module Redaction
     end
 
     def redact!
+      raise ProductionEnvironmentError if Rails.env.production?
+
       models_to_redact.each do |model|
         next if model.redacted_attributes.empty?
 
