@@ -4,6 +4,7 @@ module Redaction
       @config ||= Railtie.config.redaction
     end
   end
+
   class Railtie < ::Rails::Railtie
     config.redaction = ActiveSupport::OrderedOptions.new
 
