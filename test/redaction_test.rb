@@ -237,7 +237,10 @@ class RedactionTest < ActiveSupport::TestCase
     Rails.stub(:env, "production".inquiry) do
       post = posts(:one)
 
-      Redaction.redact! rescue
+      begin
+        Redaction.redact!
+      rescue Redaction::ProductionEnvironmentError
+      end
 
       assert_equal post.body, post.reload.body
     end
