@@ -213,4 +213,47 @@ class RedactionTest < ActiveSupport::TestCase
 
     assert_match(/special.com$/, user.email)
   end
+
+  test "it raises an error if redaction is attempted in production" do
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(Redaction::ProductionEnvironmentError) do
+        Redaction.redact!
+      end
+    end
+  end
+
+  test "it raises an error if redaction is attempted on a model in production" do
+    post = posts(:one)
+
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(Redaction::ProductionEnvironmentError) do
+        post.redact!
+      end
+
+      assert_equal post.body, post.reload.body
+    end
+  end
+
+  test "it aborts the rake task if it is attempted in production" do
+    Rails.application.load_tasks
+
+    Rails.stub(:env, "production".inquiry) do
+      assert_raises(SystemExit) do
+        Rake::Task["redaction:redact"].execute
+      end
+    end
+  end
+
+  test "it doesn't redact data if in production" do
+    Rails.stub(:env, "production".inquiry) do
+      post = posts(:one)
+
+      begin
+        Redaction.redact!
+      rescue Redaction::ProductionEnvironmentError
+      end
+
+      assert_equal post.body, post.reload.body
+    end
+  end
 end
