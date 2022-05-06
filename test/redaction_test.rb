@@ -202,4 +202,15 @@ class RedactionTest < ActiveSupport::TestCase
     assert_not_equal "(111) 111-1111", account.phone_number
     assert_match(/\d?.?\(?\d{3}\)?\s?.?\d{3}.?\d{4}/, account.phone_number)
   end
+
+  test "it generates a redacted email with a specific domain if configured" do
+    Redaction.config.email_domain = "special.com"
+
+    user = users(:one)
+    user.redact!
+
+    Redaction.config.email_domain = nil # Reset
+
+    assert_match(/special.com$/, user.email)
+  end
 end
