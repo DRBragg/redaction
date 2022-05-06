@@ -6,17 +6,17 @@ Easily redact your ActiveRecord Models. Great for use when you use production da
 `redaction` uses [Faker](https://github.com/faker-ruby/faker) under the hood to generate redacted data.
 
 ## Installation
-**NOTE:** This is currently an unreleased library very much in beta. Use at your own risk.
+**NOTE:** This is currently very much in beta. Use at your own risk.
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "redaction", git: "https://github.com/drbragg/redaction.git"
+gem "redaction"
 ```
 
 And then execute:
 ```bash
-$ bundle
+$ bundle install
 ```
 
 ## Usage
