@@ -203,6 +203,17 @@ class RedactionTest < ActiveSupport::TestCase
     assert_match(/\d?.?\(?\d{3}\)?\s?.?\d{3}.?\d{4}/, account.phone_number)
   end
 
+  test "it generates a redacted email with a specific domain if configured" do
+    Redaction.config.email_domain = "special.com"
+
+    user = users(:one)
+    user.redact!
+
+    Redaction.config.email_domain = nil # Reset
+
+    assert_match(/special.com$/, user.email)
+  end
+
   test "it raises an error if redaction is attempted in production" do
     Rails.stub(:env, "production".inquiry) do
       assert_raises(Redaction::ProductionEnvironmentError) do
