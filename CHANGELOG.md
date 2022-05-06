@@ -11,3 +11,7 @@
 ### Bug Fixes
 
 * Don't allow redactions to occur in production ([#17](https://github.com/DRBragg/redaction/issues/17)) ([4e0231a](https://github.com/DRBragg/redaction/commit/4e0231acceee3cb2be6f292d90b19dbe46102f80))
+
+## [0.1.0](https://github.com/DRBragg/redaction/tree/v0.1.0) (2022-04-01)
+
+* Initial Release
