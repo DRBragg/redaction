@@ -256,4 +256,24 @@ class RedactionTest < ActiveSupport::TestCase
       assert_equal post.body, post.reload.body
     end
   end
+
+  test "it skips the progress bar if configured" do
+    Redaction.config.progress_bar = false
+
+    out, _err = capture_subprocess_io do
+      Redaction.redact!
+    end
+
+    assert_equal "", out
+
+    Redaction.config.progress_bar = true # Reset
+  end
+
+  test "has a progress bar by default" do
+    out, _err = capture_subprocess_io do
+      Redaction.redact!
+    end
+
+    assert_not_equal "", out
+  end
 end
