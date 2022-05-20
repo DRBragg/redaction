@@ -12,6 +12,7 @@ module Redaction
       options = config.redaction
 
       options.email_domain = options.email_domain
+      options.progress_bar = options.key?(:progress_bar) ? options.progress_bar : true
 
       ActiveSupport.on_load(:active_record) do
         include Redaction::Redactable

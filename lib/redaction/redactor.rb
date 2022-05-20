@@ -14,11 +14,11 @@ module Redaction
       models_to_redact.each do |model|
         next if model.redacted_attributes.empty?
 
-        model_progress = progress_bar(model.name, model.count)
+        model_progress = progress_bar(model.name, model.count) if Redaction.config.progress_bar
 
         model.all.unscoped.find_each do |record|
           record.redact!
-          model_progress.increment
+          model_progress.increment if Redaction.config.progress_bar
         end
       end
     end
