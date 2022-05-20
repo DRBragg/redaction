@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/DRBragg/redaction/compare/v0.2.0...v0.3.0) (2022-05-20)
+
+
+### Features
+
+* Add config option to skip the progress bar ([#20](https://github.com/DRBragg/redaction/issues/20)) ([82a78e3](https://github.com/DRBragg/redaction/commit/82a78e3fbeeba5091ac4bc3cc0a8d5e60cc3086a))
+
 ## [0.2.0](https://github.com/DRBragg/redaction/compare/v0.1.0...v0.2.0) (2022-05-06)
 
 
