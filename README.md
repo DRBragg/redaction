@@ -114,6 +114,16 @@ class User < ApplicationRecord
 end
 ```
 
+### Configuration
+Redaction has the following configuration options:
+| Option       | Default      | Description  |
+|:------------|:------------|:------------|
+| `email_domain`     | `nil`  | Set to a string to use a custom domain for redacted emails. i.e. `Redaction.config.email_domain = "my-domain.dev" |
+| `progress_bar`| `true`  | Set to false to not use the built in progress bar when redacting |
+| `force_redaction`     | `false` | Set to true to alway fill a column with redacted content even if the attribute is `nil` or empty |
+
+It is reccomended that you put your configuration in an initializer like `config/initializers/redaction.rb`
+
 ## Roadmap
 - [ ] Raise Error or at least a message when skipping a passed in Model
 - [ ] Configuration (touch, email domains, etc)
