@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/DRBragg/redaction/compare/v0.3.0...v0.4.0) (2022-11-10)
+
+
+### Features
+
+* Add config option to force redaction. ([#23](https://github.com/DRBragg/redaction/issues/23)) ([0dbb4bc](https://github.com/DRBragg/redaction/commit/0dbb4bc796588b4ebe2c6c7ae1debf9e026bafb2))
+
 ## [0.3.0](https://github.com/DRBragg/redaction/compare/v0.2.0...v0.3.0) (2022-05-20)
 
 
