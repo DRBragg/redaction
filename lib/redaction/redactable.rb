@@ -17,7 +17,7 @@ module Redaction
           redactor = Redaction.find(redactor_type)
 
           attributes.each do |attribute|
-            if send(attribute).present?
+            if Redaction.config.force_redaction || send(attribute).present?
               send("#{attribute}=", redactor.call(self, {attribute: attribute}))
             end
           end
