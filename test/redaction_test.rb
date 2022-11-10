@@ -276,4 +276,17 @@ class RedactionTest < ActiveSupport::TestCase
 
     assert_not_equal "", out
   end
+
+  test "it generates redacted content even if the attribute is empty if configured" do
+    Redaction.config.force_redaction = true
+
+    user = users(:one)
+    user.update(email: nil)
+    user.redact!
+
+    Redaction.config.force_redaction = false # Reset
+
+    assert_not_nil user.email
+    assert_match(/@/, user.email)
+  end
 end
